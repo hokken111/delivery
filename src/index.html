@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>{%= o.htmlWebpackPlugin.options.title %}</title>{% for (var css in o.htmlWebpackPlugin.files.css) { %}
+    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">{% } %}
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="sidebar-mask" @click="closeSidebar()"></div>
+      <side-bar></side-bar>
+      <div id="page-content-wrapper">
+        <menu-bar></menu-bar>
+        <router-view></router-view>
+      </div>
+    </div>
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>{% } %}
+    <style>
+    .nopadding {padding: 0 !important;}
+    .nomargin{margin: 0 !important;}
+    /*!
+    * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+    * Code licensed under the Apache License v2.0.
+    * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+    */
+
+    /* Toggle Styles */
+
+    #wrapper {
+      padding-left: 0;
+      width: 100%;
+      height: 100%;
+      /*-webkit-transition: all 0.2s ease-in;
+      -moz-transition: all 0.2s ease-in;
+      -o-transition: all 0.2s ease-in;
+      transition: all 0.2s ease-in;*/
+      overflow: hidden;
+    }
+
+    #wrapper #sidebar-mask {
+      z-index: 999;
+      width: 0;
+      height: 0;
+      position: fixed;
+      background-color: rgba(0, 0, 0, .5)
+    }
+
+    #wrapper.toggled {
+      /*padding-left: 150px;*/
+    }
+
+    #wrapper.toggled #sidebar-mask{
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .5)
+    }
+
+
+    #sidebar-wrapper {
+      z-index: 1000;
+      position: fixed;
+      left: 150px;
+      width: 0;
+      height: 100%;
+      margin-left: -150px;
+      overflow-y: auto;
+      background: #364150;
+      /*-webkit-transition: all 0.2s ease-in;
+      -moz-transition: all 0.2s ease-in;
+      -o-transition: all 0.2s ease-in;
+      transition: all 0.2s ease-in;*/
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+      width: 150px;
+    }
+
+    #page-content-wrapper {
+      width: 100%;
+      position: absolute;
+      height: 100%;
+    }
+    /* Sidebar Styles */
+
+    .sidebar-nav {
+      position: absolute;
+      top: 0;
+      width: 150px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .sidebar-nav li {
+      line-height: 40px;
+      height: 40px;
+      border-bottom: 1px solid #606C7D;
+    }
+
+    .sidebar-nav li a {
+      display: block;
+      text-decoration: none;
+      color: #b4bcc8;
+      padding: 0 20px;
+    }
+
+    .sidebar-nav li a:hover {
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .sidebar-nav li a:active,
+    .sidebar-nav li a:focus {
+      text-decoration: none;
+    }
+
+    .sidebar-nav > .sidebar-brand {
+      height: 50px;
+      font-size: 18px;
+      line-height: 50px;
+      color: #b4bcc8;
+      white-space: nowrap;
+    }
+
+    .sidebar-nav > .sidebar-brand a {
+      padding: 0 20px;
+    }
+
+    .sidebar-nav > .sidebar-brand a:hover {
+      color: #fff;
+      background: none;
+    }
+
+    @media(min-width:768px) {
+      #wrapper {
+        /*padding-left: 150px;*/
+      }
+
+      #wrapper.toggled {
+        padding-left: 0;
+      }
+
+      #sidebar-wrapper {
+        width: 150px;
+      }
+
+      #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+      }
+
+      #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+      }
+
+      #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+        height: 100%;
+      }
+    }
+    </style>
+  </body>
+</html>
